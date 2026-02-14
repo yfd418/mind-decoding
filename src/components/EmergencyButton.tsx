@@ -11,24 +11,14 @@ export default function EmergencyButton({ isDarkMode }: EmergencyButtonProps) {
   const emergencyResources = [
     {
       name: '全国心理援助热线',
-      number: '400-161-9995',
-      description: '24小时免费服务',
+      number: '12356',
+      description: '国家卫健委统一热线',
       primary: true,
     },
     {
-      name: '北京心理危机研究与干预中心',
-      number: '010-82951332',
-      description: '24小时服务',
-    },
-    {
-      name: '上海心理援助热线',
-      number: '021-34289888',
-      description: '24小时服务',
-    },
-    {
-      name: '生命热线',
-      number: '400-821-1215',
-      description: '防自杀干预',
+      name: '希望24热线',
+      number: '400-161-9995',
+      description: '24小时生命危机干预',
     },
   ];
 

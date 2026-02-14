@@ -2,15 +2,14 @@ import { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, User, LogOut, TreeDeciduous } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-
-interface NavbarProps {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-}
+import { useTheme } from '@/contexts/ThemeContext';
 
 function Logo({ isDarkMode }: { isDarkMode: boolean }) {
   const textColor = isDarkMode ? '#E0E6E2' : '#2C3E33';
   const sloganColor = isDarkMode ? '#A5B5AD' : '#5F7066';
+  const bgColor = isDarkMode ? '#1B2B22' : '#FDFBF7';
+  const leafColor = isDarkMode ? '#6B8E7B' : '#6B8E7B';
+  const goldColor = isDarkMode ? '#D4B675' : '#C9A050';
 
   return (
     <svg
@@ -19,51 +18,51 @@ function Logo({ isDarkMode }: { isDarkMode: boolean }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="leafGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-          <stop offset="0%" stopColor={isDarkMode ? '#4A6658' : '#6B8E7B'} />
-          <stop offset="100%" stopColor={isDarkMode ? '#6B8E7B' : '#B2C2B9'} />
+        <linearGradient id="navLeafGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor={isDarkMode ? '#4A6658' : '#4A6658'} />
+          <stop offset="100%" stopColor={isDarkMode ? '#6B8E7B' : '#6B8E7B'} />
+        </linearGradient>
+        <linearGradient id="navGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={goldColor} />
+          <stop offset="100%" stopColor={goldColor} />
         </linearGradient>
       </defs>
 
-      <g transform="translate(5, 8)">
+      <g transform="translate(5, 5)">
+        <circle cx="25" cy="25" r="23" fill={bgColor} stroke={isDarkMode ? '#4A6658' : '#1B2B22'} strokeWidth="1.5"/>
+        
         <path
-          d="M18 35 Q10 30 8 20 Q6 10 15 5 Q20 2 22 8 Q25 15 22 22 Q20 28 18 35"
+          d="M24 8 Q14 14 12 22 Q10 30 16 38 Q22 34 24 28 Q24 18 24 8"
+          fill="url(#navLeafGradient)"
+          opacity="0.85"
+        />
+        <path
+          d="M26 8 Q36 14 38 22 Q40 30 34 38 Q28 34 26 28 Q26 18 26 8"
+          fill="url(#navLeafGradient)"
+          opacity="0.85"
+        />
+        
+        <path
+          d="M25 6 Q26 15 25 25 Q24 35 25 42"
           fill="none"
-          stroke={isDarkMode ? '#6B8E7B' : '#6B8E7B'}
-          strokeWidth="2"
+          stroke={isDarkMode ? '#1B2B22' : '#1B2B22'}
+          strokeWidth="2.5"
           strokeLinecap="round"
         />
-        <path
-          d="M26 35 Q34 30 36 20 Q38 10 29 5 Q24 2 22 8 Q19 15 22 22 Q24 28 26 35"
-          fill="none"
-          stroke={isDarkMode ? '#6B8E7B' : '#6B8E7B'}
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 22 Q22 15 22 8 Q22 2 25 0"
-          fill="none"
-          stroke={isDarkMode ? '#6B8E7B' : '#6B8E7B'}
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 12 Q18 10 16 14 Q18 16 22 14"
-          fill={isDarkMode ? '#6B8E7B' : '#6B8E7B'}
-          stroke="none"
-        />
-        <path
-          d="M22 38 Q18 35 18 32 Q18 29 22 29 Q26 29 26 32 Q26 35 22 38"
-          fill={isDarkMode ? '#D4B675' : '#C9A050'}
-          stroke="none"
-        />
+        
+        <circle cx="25" cy="22" r="5" fill="url(#navGoldGradient)"/>
+        <circle cx="25" cy="22" r="2" fill={bgColor}/>
+        
+        <circle cx="12" cy="18" r="1" fill={goldColor} opacity="0.6"/>
+        <circle cx="38" cy="18" r="1" fill={goldColor} opacity="0.6"/>
+        <circle cx="25" cy="44" r="1" fill={goldColor} opacity="0.5"/>
       </g>
 
       <text
-        x="55"
-        y="28"
+        x="65"
+        y="26"
         fontFamily="system-ui, 'PingFang SC', 'Noto Sans SC', sans-serif"
-        fontSize="22"
+        fontSize="20"
         fontWeight="bold"
         fill={textColor}
       >
@@ -71,10 +70,10 @@ function Logo({ isDarkMode }: { isDarkMode: boolean }) {
       </text>
 
       <text
-        x="55"
-        y="46"
+        x="65"
+        y="42"
         fontFamily="system-ui, 'PingFang SC', 'Noto Sans SC', sans-serif"
-        fontSize="10"
+        fontSize="9"
         fill={sloganColor}
       >
         解码人格迷雾 找回真实自我
@@ -83,13 +82,14 @@ function Logo({ isDarkMode }: { isDarkMode: boolean }) {
   );
 }
 
-export default function Navbar({ isDarkMode, toggleDarkMode }: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const location = useLocation();
 
   const { user, isAuthenticated, logout, openAuthModal } = useAuth();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const isHomePage = location.pathname === '/';
 

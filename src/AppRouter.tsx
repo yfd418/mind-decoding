@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import KnowledgeSection from './components/KnowledgeSection';
@@ -49,29 +50,12 @@ function HomePage({ isDarkMode }: HomePageProps) {
 }
 
 function AppContent() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { isDarkMode } = useTheme();
   const { isAuthModalOpen, closeAuthModal, authModalMode } = useAuth();
-
-  useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(prev => !prev);
-  };
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
         <Route path="/community" element={<CommunityPage isDarkMode={isDarkMode} />} />
@@ -92,10 +76,12 @@ function AppContent() {
 function AppRouter() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ScrollToTop />
-        <AppContent />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <ScrollToTop />
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

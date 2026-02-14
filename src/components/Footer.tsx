@@ -6,6 +6,8 @@ interface FooterProps {
 }
 
 function FooterLogo({ isDarkMode }: { isDarkMode: boolean }) {
+  const goldColor = '#C9A050';
+
   return (
     <svg
       viewBox="0 0 320 60"
@@ -17,47 +19,47 @@ function FooterLogo({ isDarkMode }: { isDarkMode: boolean }) {
           <stop offset="0%" stopColor="#4A6658" />
           <stop offset="100%" stopColor="#6B8E7B" />
         </linearGradient>
+        <linearGradient id="footerGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={goldColor} />
+          <stop offset="100%" stopColor={goldColor} />
+        </linearGradient>
       </defs>
 
-      <g transform="translate(5, 8)">
+      <g transform="translate(5, 5)">
+        <circle cx="25" cy="25" r="23" fill="#1B2B22" stroke="#4A6658" strokeWidth="1.5"/>
+        
         <path
-          d="M18 35 Q10 30 8 20 Q6 10 15 5 Q20 2 22 8 Q25 15 22 22 Q20 28 18 35"
+          d="M24 8 Q14 14 12 22 Q10 30 16 38 Q22 34 24 28 Q24 18 24 8"
+          fill="url(#footerLeafGradient)"
+          opacity="0.85"
+        />
+        <path
+          d="M26 8 Q36 14 38 22 Q40 30 34 38 Q28 34 26 28 Q26 18 26 8"
+          fill="url(#footerLeafGradient)"
+          opacity="0.85"
+        />
+        
+        <path
+          d="M25 6 Q26 15 25 25 Q24 35 25 42"
           fill="none"
-          stroke="#6B8E7B"
-          strokeWidth="2"
+          stroke="#1B2B22"
+          strokeWidth="2.5"
           strokeLinecap="round"
         />
-        <path
-          d="M26 35 Q34 30 36 20 Q38 10 29 5 Q24 2 22 8 Q19 15 22 22 Q24 28 26 35"
-          fill="none"
-          stroke="#6B8E7B"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 22 Q22 15 22 8 Q22 2 25 0"
-          fill="none"
-          stroke="#6B8E7B"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 12 Q18 10 16 14 Q18 16 22 14"
-          fill="#6B8E7B"
-          stroke="none"
-        />
-        <path
-          d="M22 38 Q18 35 18 32 Q18 29 22 29 Q26 29 26 32 Q26 35 22 38"
-          fill={isDarkMode ? '#D4B675' : '#C9A050'}
-          stroke="none"
-        />
+        
+        <circle cx="25" cy="22" r="5" fill="url(#footerGoldGradient)"/>
+        <circle cx="25" cy="22" r="2" fill="#1B2B22"/>
+        
+        <circle cx="12" cy="18" r="1" fill={goldColor} opacity="0.6"/>
+        <circle cx="38" cy="18" r="1" fill={goldColor} opacity="0.6"/>
+        <circle cx="25" cy="44" r="1" fill={goldColor} opacity="0.5"/>
       </g>
 
       <text
-        x="55"
-        y="28"
+        x="65"
+        y="26"
         fontFamily="system-ui, 'PingFang SC', 'Noto Sans SC', sans-serif"
-        fontSize="22"
+        fontSize="20"
         fontWeight="bold"
         fill="#FFFFFF"
       >
@@ -65,10 +67,10 @@ function FooterLogo({ isDarkMode }: { isDarkMode: boolean }) {
       </text>
 
       <text
-        x="55"
-        y="46"
+        x="65"
+        y="42"
         fontFamily="system-ui, 'PingFang SC', 'Noto Sans SC', sans-serif"
-        fontSize="10"
+        fontSize="9"
         fill="#A5B5AD"
       >
         解码人格迷雾 找回真实自我

@@ -19,10 +19,10 @@ export default function CommunityPage({ isDarkMode }: CommunityPageProps) {
   const navigate = useNavigate();
 
   const zones = [
-    { id: 'recognition' as CommunityZone, icon: <Search className="w-5 h-5" />, ...zoneConfig.recognition },
-    { id: 'practice' as CommunityZone, icon: <Shield className="w-5 h-5" />, ...zoneConfig.practice },
-    { id: 'recovery' as CommunityZone, icon: <Heart className="w-5 h-5" />, ...zoneConfig.recovery },
-    { id: 'emotion' as CommunityZone, icon: <Waves className="w-5 h-5" />, ...zoneConfig.emotion },
+    { id: 'recognition' as CommunityZone, icon: <Search className="w-5 h-5" />, name: zoneConfig.recognition.name, description: zoneConfig.recognition.description },
+    { id: 'practice' as CommunityZone, icon: <Shield className="w-5 h-5" />, name: zoneConfig.practice.name, description: zoneConfig.practice.description },
+    { id: 'recovery' as CommunityZone, icon: <Heart className="w-5 h-5" />, name: zoneConfig.recovery.name, description: zoneConfig.recovery.description },
+    { id: 'emotion' as CommunityZone, icon: <Waves className="w-5 h-5" />, name: zoneConfig.emotion.name, description: zoneConfig.emotion.description },
   ];
 
   const displayedPosts = activeZone === 'all' ? mockPosts : getPostsByZone(activeZone);
@@ -94,38 +94,6 @@ export default function CommunityPage({ isDarkMode }: CommunityPageProps) {
               {zone.icon}
               {zone.name}
             </button>
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-4 mb-8">
-          {zones.map((zone) => (
-            <div
-              key={zone.id}
-              onClick={() => setActiveZone(zone.id)}
-              className={`p-4 rounded-xl cursor-pointer transition-all duration-300 hover:-translate-y-1 ${
-                isDarkMode
-                  ? 'bg-card border border-border hover:border-sage-dark/50'
-                  : 'bg-white shadow-md hover:shadow-lg'
-              }`}
-            >
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${
-                isDarkMode ? 'bg-sage-dark/30' : 'bg-sage/20'
-              }`}>
-                <span className={isDarkMode ? 'text-sunshine-light' : 'text-sunshine'}>
-                  {zone.icon}
-                </span>
-              </div>
-              <h3 className={`font-semibold mb-1 ${
-                isDarkMode ? 'text-soft-green' : 'text-foreground'
-              }`}>
-                {zone.name}
-              </h3>
-              <p className={`text-xs ${
-                isDarkMode ? 'text-gray-green' : 'text-muted-foreground'
-              }`}>
-                {zone.subtitle}
-              </p>
-            </div>
           ))}
         </div>
 
