@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 12px;
+
+    /* Light Mode Colors - "向阳而生" Healing Theme */
+    --background: 40 20% 98%;      /* #FDFBF7 - Warm cream white */
+    --foreground: 150 15% 22%;     /* #2C3E33 - Dark forest green */
+    --card: 40 15% 97%;
+    --card-foreground: 150 15% 22%;
+    --popover: 40 15% 98%;
+    --popover-foreground: 150 15% 22%;
+    --primary: 150 15% 70%;        /* #B2C2B9 - Sage green */
+    --primary-foreground: 150 15% 22%;
+    --secondary: 38 55% 54%;      /* #C9A050 - Warm sunshine yellow */
+    --secondary-foreground: 40 20% 98%;
+    --muted: 150 10% 90%;
+    --muted-foreground: 150 10% 45%;
+    --accent: 38 55% 54%;          /* #C9A050 - Warm sunshine yellow */
+    --accent-foreground: 150 15% 22%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 15% 85%;
+    --input: 150 15% 90%;
+    --ring: 150 15% 70%;
+  }
+
+  .dark {
+    /* Dark Mode Colors - Deep Forest Theme */
+    --background: 150 30% 14%;     /* #1B2B22 - Deep forest green */
+    --foreground: 150 10% 90%;     /* #E0E6E2 - Soft gray-green */
+    --card: 150 30% 16%;
+    --card-foreground: 150 10% 90%;
+    --popover: 150 30% 14%;
+    --popover-foreground: 150 10% 90%;
+    --primary: 150 20% 40%;        /* #4A6658 - Darkened sage */
+    --primary-foreground: 150 10% 90%;
+    --secondary: 38 45% 58%;       /* #D4B675 - Soft gold */
+    --secondary-foreground: 150 30% 14%;
+    --muted: 150 25% 20%;
+    --muted-foreground: 150 10% 70%;
+    --accent: 38 45% 58%;          /* #D4B675 - Soft gold */
+    --accent-foreground: 150 30% 14%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 25% 22%;
+    --input: 150 25% 20%;
+    --ring: 150 20% 40%;
+  }
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, "PingFang SC", "Noto Sans SC", -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Animation delays for staggered effects */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Glass effect for navbar */
+.glass {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background: hsl(var(--background) / 0.9);
+}
